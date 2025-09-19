@@ -1,4 +1,4 @@
-package com.example.CrudAlunos.Entity;
+package com.example.CrudAlunos.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
