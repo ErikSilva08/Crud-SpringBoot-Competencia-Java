@@ -1,5 +1,6 @@
 package com.example.CrudAlunos.entity;
 
+import com.example.CrudAlunos.dto.AlunoRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,4 +27,10 @@ public class Aluno {
     private LocalDate register = LocalDate.now();
 
     //Criem os atributos de relacionamento aqui e o lombok cria os Getters e Setters automatico!
+
+    public Aluno (AlunoRequestDto requestDto) {
+        this.name = requestDto.name();
+        this.age = requestDto.age();
+        this.email = requestDto.email();
+    }
 }
