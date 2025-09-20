@@ -1,6 +1,7 @@
 package com.example.CrudAlunos.entity;
 
 import com.example.CrudAlunos.dto.AlunoRequestDto;
+import com.example.CrudAlunos.enuns.AlunoStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,7 @@ public class Aluno {
     @Column(nullable = false,length = 100)
     private String email;
     private LocalDate register = LocalDate.now();
+    private AlunoStatus status = AlunoStatus.MATRICULADO;
 
     //Criem os atributos de relacionamento aqui e o lombok cria os Getters e Setters automatico!
 
