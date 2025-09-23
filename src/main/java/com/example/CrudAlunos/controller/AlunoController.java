@@ -38,4 +38,12 @@ public class AlunoController {
         service.cancelAluno(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PostMapping("/{alunoName}/adicionar-disciplina/{disciplinaName}")
+    public ResponseEntity<String> adicionarDisciplina(
+            @PathVariable String alunoName,
+            @PathVariable String disciplinaName) {
+        service.adicionarAlunoADisciplina(alunoName, disciplinaName);
+        return ResponseEntity.ok("Aluno adicionado a disciplina com sucesso");
+    }
 }

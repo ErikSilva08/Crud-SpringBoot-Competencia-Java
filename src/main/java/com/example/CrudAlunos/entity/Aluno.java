@@ -4,8 +4,10 @@ import com.example.CrudAlunos.dto.AlunoRequestDto;
 import com.example.CrudAlunos.enuns.AlunoStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "tb_alunos")
@@ -29,6 +31,14 @@ public class Aluno {
     private AlunoStatus status = AlunoStatus.MATRICULADO;
 
     //Criem os atributos de relacionamento aqui e o lombok cria os Getters e Setters automatico!
+
+    @ManyToMany
+    @JoinTable(
+            name = "aluno_disciplina",
+            joinColumns = @JoinColumn(name = "aluno_id"),
+            inverseJoinColumns = @JoinColumn(name = "disciplina_id")
+    )
+    private Set<Disciplina> disciplinas = new HashSet<>();
 
     public Aluno (AlunoRequestDto requestDto) {
         this.name = requestDto.name();
