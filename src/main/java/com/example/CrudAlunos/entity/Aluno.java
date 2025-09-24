@@ -40,6 +40,10 @@ public class Aluno {
     )
     private Set<Disciplina> disciplinas = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "turma_id")
+    private Turma turma;
+
     public Aluno (AlunoRequestDto requestDto) {
         this.name = requestDto.name();
         this.age = requestDto.age();

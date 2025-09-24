@@ -4,6 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ProfessorDTO {
+public class ProfessorDto {
     private String name;
 }

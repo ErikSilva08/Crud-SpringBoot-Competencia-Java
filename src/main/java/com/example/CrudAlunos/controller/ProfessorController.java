@@ -2,7 +2,7 @@ package com.example.CrudAlunos.controller;
 
 import com.example.CrudAlunos.entity.Professor;
 import com.example.CrudAlunos.service.ProfessorService;
-import com.example.CrudAlunos.dto.ProfessorDTO;
+import com.example.CrudAlunos.dto.ProfessorDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ public class ProfessorController {
     private final ProfessorService service;
 
     @PostMapping
-    public ResponseEntity<Professor> createProfessor(@RequestBody ProfessorDTO dto) {
+    public ResponseEntity<Professor> createProfessor(@RequestBody ProfessorDto dto) {
         Professor novoProfessor = service.createNewProfessor(dto.getName());
         return new ResponseEntity<>(novoProfessor, HttpStatus.CREATED);
     }
@@ -38,7 +38,7 @@ public class ProfessorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Professor> updateProfessor(@PathVariable Long id, @RequestBody ProfessorDTO dto) {
+    public ResponseEntity<Professor> updateProfessor(@PathVariable Long id, @RequestBody ProfessorDto dto) {
         return ResponseEntity.ok(service.updateProfessor(id, dto.getName()));
     }
 }
