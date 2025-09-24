@@ -1,6 +1,7 @@
 package com.example.CrudAlunos.service;
 
 import com.example.CrudAlunos.entity.Curso;
+import com.example.CrudAlunos.entity.Professor;
 import com.example.CrudAlunos.repository.CursoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor

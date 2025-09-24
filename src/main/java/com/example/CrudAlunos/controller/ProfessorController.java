@@ -17,13 +17,13 @@ public class ProfessorController {
 
     @PostMapping
     public ResponseEntity<Professor> createProfessor(@RequestBody ProfessorDto dto) {
-        Professor novoProfessor = service.createNewProfessor(dto.getName());
+        Professor novoProfessor = service.createProfessor(dto.getName());
         return new ResponseEntity<>(novoProfessor, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<Professor>> getAllProfessors() {
-        return ResponseEntity.ok(service.listAllProfessors());
+        return ResponseEntity.ok(service.listAllProfessores());
     }
 
     @GetMapping("/{id}")
@@ -31,14 +31,14 @@ public class ProfessorController {
         return ResponseEntity.ok(service.listProfessorById(id));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/delete")
     public ResponseEntity<Void> deleteProfessor(@PathVariable Long id) {
         service.deleteProfessor(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Professor> updateProfessor(@PathVariable Long id, @RequestBody ProfessorDto dto) {
-        return ResponseEntity.ok(service.updateProfessor(id, dto.getName()));
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Professor> updateProfessor(@PathVariable Long id, @RequestBody ProfessorDto dto) {
+//        return ResponseEntity.ok(service.updateProfessor(id, dto.getName()));
+//    }
 }

@@ -7,5 +7,6 @@ public record AlunoRequestDto(@NotNull
                               @NotNull
                               Integer age,
                               @NotNull
-                              String email) {
+                              String email,
+                              Long cursoId) {
 }

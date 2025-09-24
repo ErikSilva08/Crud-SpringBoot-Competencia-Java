@@ -49,4 +49,8 @@ public class Aluno {
         this.age = requestDto.age();
         this.email = requestDto.email();
     }
+
+    public <E> Aluno(Object o, String alunoName, int i, String s, Object o1, Object o2, HashSet<E> es) {
+
+    }
 }

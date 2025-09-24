@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -49,5 +50,10 @@ public class ProfessorService {
         Professor professor = professorRepository.findById(professorId)
                 .orElseThrow(() -> new EntityNotFoundException("Professor não encontrado"));
         return professor.getCursos();
+    }
+
+    public void deleteProfessor (Long id) {
+        Professor professorDelete = professorRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("id" + id + " Not found!"));
+        professorRepository.delete(professorDelete);
     }
 }
