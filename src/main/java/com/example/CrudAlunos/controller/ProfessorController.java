@@ -37,6 +37,15 @@ public class ProfessorController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PatchMapping("/{professorId}/adicionar-curso/{cursoId}")
+    public ResponseEntity<String> adicionarProfessorACurso(
+            @PathVariable Long professorId,
+            @PathVariable Long cursoId) {
+
+        service.adicionarProfessorACurso(professorId, cursoId);
+        return ResponseEntity.ok("Professor adicionado ao curso com sucesso!");
+    }
+
 //    @PutMapping("/{id}")
 //    public ResponseEntity<Professor> updateProfessor(@PathVariable Long id, @RequestBody ProfessorDto dto) {
 //        return ResponseEntity.ok(service.updateProfessor(id, dto.getName()));
