@@ -53,4 +53,7 @@ public class Aluno {
     public <E> Aluno(Object o, String alunoName, int i, String s, Object o1, Object o2, HashSet<E> es) {
 
     }
+    @OneToOne
+    @JoinColumn(name = "historico_id")
+    private Historico historico;
 }
