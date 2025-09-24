@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor // elimina o @Autowired
+@RequiredArgsConstructor
 public class TurmaService {
 
     private final TurmaRepository turmaRepository;
