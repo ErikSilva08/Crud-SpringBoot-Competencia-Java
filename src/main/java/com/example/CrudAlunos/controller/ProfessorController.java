@@ -1,44 +1,48 @@
 package com.example.CrudAlunos.controller;
 
 import com.example.CrudAlunos.entity.Professor;
+import com.example.CrudAlunos.entity.Curso;
 import com.example.CrudAlunos.service.ProfessorService;
-import com.example.CrudAlunos.dto.ProfessorDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/professores")
 @RequiredArgsConstructor
 public class ProfessorController {
+
     private final ProfessorService service;
 
     @PostMapping
-    public ResponseEntity<Professor> createProfessor(@RequestBody ProfessorDTO dto) {
-        Professor novoProfessor = service.createNewProfessor(dto.getName());
-        return new ResponseEntity<>(novoProfessor, HttpStatus.CREATED);
+    public ResponseEntity<Professor> createProfessor(@RequestBody String name) {
+        return new ResponseEntity<>(service.createProfessor(name), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Professor>> getAllProfessors() {
-        return ResponseEntity.ok(service.listAllProfessors());
+    public ResponseEntity<List<Professor>> listAllProfessores() {
+        return ResponseEntity.ok(service.listAllProfessores());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Professor> getProfessorById(@PathVariable Long id) {
+    public ResponseEntity<Professor> listProfessorById(@PathVariable Long id) {
         return ResponseEntity.ok(service.listProfessorById(id));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProfessor(@PathVariable Long id) {
-        service.deleteProfessor(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @PostMapping("/{professorId}/adicionar-curso/{cursoId}")
+    public ResponseEntity<String> adicionarCurso(
+            @PathVariable Long professorId,
+            @PathVariable Long cursoId) {
+        service.adicionarProfessorACurso(professorId, cursoId);
+        return ResponseEntity.ok("Professor adicionado ao curso com sucesso");
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Professor> updateProfessor(@PathVariable Long id, @RequestBody ProfessorDTO dto) {
-        return ResponseEntity.ok(service.updateProfessor(id, dto.getName()));
+    @GetMapping("/{professorId}/cursos")
+    public ResponseEntity<Set<Curso>> listarCursosDoProfessor(@PathVariable Long professorId) {
+        return ResponseEntity.ok(service.listarCursosDoProfessor(professorId));
     }
 }
+
