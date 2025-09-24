@@ -6,11 +6,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_professor")
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Table(name = "tb_professores")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Professor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +21,16 @@ public class Professor {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL)
-    private Set<Disciplina> disciplinas = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "professor_curso",
+            joinColumns = @JoinColumn(name = "professor_id"),
+            inverseJoinColumns = @JoinColumn(name = "curso_id")
+    )
+    private Set<Curso> cursos = new HashSet<>();
+
+    public Professor(String name) {
+        this.name = name;
+    }
 }
+
